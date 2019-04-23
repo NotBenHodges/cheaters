@@ -6,12 +6,20 @@ var data = d3.json('penguins/classData.json')
     //console.log(d.quizes)
     return d.quizes;
   })
+
+  var homework = data.map(function(d){
+    //console.log(d.quizes)
+    return d.homework;
+  })
+
+
   //console.log(quizzes)
-  drawGraph(makeArray(quizzes));
+  drawGraph(makeArray(quizzes),"svg");
   //console.log(makeArray(quizzes))
+  drawGraph(makeArray(homework),"#homework");
 });
 
-var drawGraph = function(quizzes){
+var drawGraph = function(quizzes,svg){
   console.log(quizzes)
 
   var height = 600;
@@ -27,7 +35,7 @@ var drawGraph = function(quizzes){
                 .domain([0,23])
                 .range([0,height]);
 
-  var svg = d3.select("svg")
+  var svg = d3.select(svg)
               .attr("height",height)
               .attr("width",width)
               .selectAll("rect")
